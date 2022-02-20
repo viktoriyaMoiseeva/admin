@@ -492,31 +492,3 @@ button.is-loading > span {
 }
 
 /* skeleton */
-
-.loading-line {
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: backgroundMovement;
-    animation-timing-function: linear;
-    background: var(--grey-skeleton);
-    background: linear-gradient(
-            267.58deg,
-            var(--grey-middle) 0%,
-            var(--grey-skeleton) 80%,
-            var(--grey-middle) 100%
-    );
-    background-size: 200%;
-    border-radius: 2px;
-    display: block;
-    height: var(--loading-line-height);
-}
-
-@keyframes backgroundMovement {
-    0% {
-        background-position: 100%;
-    }
-    100% {
-        background-position: -100%;
-    }
-}

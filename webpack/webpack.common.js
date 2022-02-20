@@ -27,11 +27,17 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
+        include: [
+          path.resolve(__dirname, "../src/components")
+        ],
         use: imageLoaders
       },
       {
         // | svg - add in case when we need load svg font
-        test: /\.(woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        include: [
+          path.resolve(__dirname, "../src/assets/fonts")
+        ],
         use: fontLoaders
       },
       {
@@ -65,12 +71,13 @@ module.exports = {
         {
           from: path.join(__dirname, '../src/assets'),
           to: "assets/[path][name][ext]",
-        },
-        {
-          from: path.join(__dirname, '../src/components/product-form/*.svg'),
-          to: "[name][ext]",
+          globOptions: {
+            ignore: [
+              "**/fonts/**",
+            ],
+          },
         }
       ]
     })
-  ]
+  ],
 };
