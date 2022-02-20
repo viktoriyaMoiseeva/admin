@@ -3,8 +3,6 @@ import SortableTable from '../../components/sortable-table/index.js';
 import ColumnChart from '../../components/column-chart/index.js';
 import header from './bestsellers-header.js';
 
-const BACKEND_URL = 'https://course-js.javascript.ru/';
-
 export default class Dashboard {
   element;
   subElements;
@@ -127,7 +125,7 @@ export default class Dashboard {
   }
 
   getBestsellersUrl() {
-    const url = new URL('api/dashboard/bestsellers', BACKEND_URL);
+    const url = new URL('api/dashboard/bestsellers', process.env.BACKEND_URL);
     url.searchParams.set('from', this.from.toISOString());
     url.searchParams.set('to', this.to.toISOString());
 
@@ -149,12 +147,17 @@ export default class Dashboard {
   };
 
   destroy() {
+    this.rangePicker.element.removeEventListener('date-select', this.updateData);
+    this.rangePicker.destroy();
+    this.bestsellersTable.destroy();
+    this.columnCharts.ordersChart.destroy();
+    this.columnCharts.salesChart.destroy();
+    this.columnCharts.customersChart.destroy();
     this.remove();
     this.subElements = {};
   }
 
   remove() {
     this.element.remove();
-    this.rangePicker.element.removeEventListener('date-select', this.updateData);
   }
 }

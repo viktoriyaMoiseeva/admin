@@ -215,6 +215,7 @@ export default class RangePicker {
   }
 
   destroy() {
+    this.subElements.input.removeEventListener('click', this.toggleOpened);
     this.remove();
   }
 

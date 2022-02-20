@@ -7,13 +7,13 @@ const header = [
   },
   {
     id: 'user',
-    title: 'User',
+    title: 'Клиент',
     sortable: true,
     sortType: 'string'
   },
   {
     id: 'createdAt',
-    title: 'Created at',
+    title: 'Дата',
     sortable: true,
     sortType: 'string',
     template: data => {
@@ -28,7 +28,7 @@ const header = [
   },
   {
     id: 'totalCost',
-    title: 'Total Cost',
+    title: 'Стоимость',
     sortable: true,
     sortType: 'number',
     template: data => {
@@ -41,7 +41,7 @@ const header = [
   },
   {
     id: 'delivery',
-    title: 'Status',
+    title: 'Статус',
     sortable: true,
     sortType: 'string'
   },

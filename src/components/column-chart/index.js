@@ -1,5 +1,3 @@
-const BACKEND_URL = 'https://course-js.javascript.ru';
-
 export default class ColumnChart {
   chartHeight = 50;
   subElements = {};
@@ -76,7 +74,7 @@ export default class ColumnChart {
     this.isLoading = true;
     this.element.classList.add('column-chart_loading');
 
-    const url = new URL(this.url, BACKEND_URL);
+    const url = new URL(this.url, process.env.BACKEND_URL);
     url.searchParams.set('from', from.toISOString());
     url.searchParams.set('to', to.toISOString());
 
@@ -153,6 +151,8 @@ export default class ColumnChart {
   };
 
   destroy() {
+    this.subElements.body.removeEventListener('pointerover', this.hovered);
+    this.subElements.body.removeEventListener('pointerout', this.unhovered);
     this.remove();
     this.subElements = {};
   }

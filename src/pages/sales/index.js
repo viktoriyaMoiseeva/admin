@@ -2,8 +2,6 @@ import RangePicker from '../../components/range-picker/index.js';
 import SortableTable from '../../components/sortable-table/index.js';
 import header from './sales-header.js';
 
-const BACKEND_URL = 'https://course-js.javascript.ru/';
-
 export default class Sales {
   element;
   rangePicker;
@@ -68,7 +66,7 @@ export default class Sales {
   }
 
   getSalesTableUrl() {
-    const url = new URL('api/rest/orders', BACKEND_URL);
+    const url = new URL('api/rest/orders', process.env.BACKEND_URL);
     url.searchParams.set('createdAt_gte', this.from.toISOString());
     url.searchParams.set('createdAt_lte', this.to.toISOString());
 
@@ -87,10 +85,12 @@ export default class Sales {
 
   destroy() {
     this.remove();
+    this.rangePicker.element.removeEventListener('date-select', this.updateData);
+    this.rangePicker.destroy();
+    this.salesTable.destroy();
   }
 
   remove() {
     this.element.remove();
-    this.rangePicker.element.removeEventListener('date-select', this.updateData);
   }
 }

@@ -1,5 +1,3 @@
-const BACKEND_URL = 'https://course-js.javascript.ru';
-
 export default class SortableTable {
   element;
   subElements = {};
@@ -142,7 +140,7 @@ export default class SortableTable {
       this.end += this.perPage;
     }
 
-    const url = new URL(this.url, BACKEND_URL);
+    const url = new URL(this.url, process.env.BACKEND_URL);
     url.searchParams.set('_sort', this.sorted.id);
     url.searchParams.set('_order', this.sorted.order);
     url.searchParams.set('_start', this.start.toString());
